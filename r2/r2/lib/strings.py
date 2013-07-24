@@ -82,7 +82,7 @@ string_dict = dict(
 
     legal = _("I understand and agree that registration on or use of this site constitutes agreement to its %(user_agreement)s and %(privacy_policy)s."),
 
-    friends = _('to view reddit with only submissions from your friends, use [reddit.com/r/friends](%s)'),
+    friends = _('to view reddit with only submissions from your friends, use [reddit.com/d/friends](%s)'),
 
     sr_created = _('your subreddit has been created'),
 
@@ -138,7 +138,7 @@ string_dict = dict(
     unverified_quota_msg = _("Looks like you're either a brand new user or your posts have not been doing well recently. You may have to wait a bit to post again. In the meantime feel free to [check out the reddiquette](%(reddiquette)s), join the conversation in a different thread, or [verify your email address](%(verify)s)."),
     read_only_msg = _("reddit is in \"emergency read-only mode\" right now. :( you won't be able to log in. we're sorry, and are working frantically to fix the problem."),
     heavy_load_msg = _("this page is temporarily in read-only mode due to heavy traffic."),
-    gold_benefits_msg = _("Being a reddit gold member gives you access to a bunch of new site features and other benefits. Be sure to check out **[the reddit gold information page](/gold/about)** to see what's currently available, and subscribe to **/r/goldbenefits** to keep up with announcements of new benefits."),
+    gold_benefits_msg = _("Being a reddit gold member gives you access to a bunch of new site features and other benefits. Be sure to check out **[the reddit gold information page](/gold/about)** to see what's currently available, and subscribe to **/d/goldbenefits** to keep up with announcements of new benefits."),
     lounge_msg = _("please grab a drink and join us in [the lounge](%(link)s)."),
     postcard_msg = _("You sent us a postcard! (Or something similar.) When we run out of room on our refrigerator, we might one day auction off the stuff that people sent in. Is it okay if we include your thing?"),
     over_comment_limit = _("Sorry, the maximum number of comments is %(max)d. (However, if you subscribe to reddit gold, it goes up to %(goldmax)d.)"),
@@ -187,9 +187,9 @@ Note: there are a couple of places outside of your subreddit where someone can c
     subscribed_multi = _("multireddit of your subscriptions"),
     mod_multi = _("multireddit of subreddits you moderate"),
 
-    r_all_description = _("/r/all displays content from all of reddit, including subreddits you aren't subscribed to."),
-    r_all_minus_description = _("Displaying content from /r/all of reddit, except the following subreddits:"),
-    all_minus_gold_only = _('Filtering /r/all is a feature only available to [reddit gold](/gold/about) subscribers. Displaying unfiltered results from /r/all.'),
+    r_all_description = _("/d/all displays content from all of reddit, including subreddits you aren't subscribed to."),
+    r_all_minus_description = _("Displaying content from /d/all of reddit, except the following subreddits:"),
+    all_minus_gold_only = _('Filtering /d/all is a feature only available to [reddit gold](/gold/about) subscribers. Displaying unfiltered results from /d/all.'),
 
     missing_credit_name = _("missing name"),
     bad_credit_number = _("invalid credit card number"),

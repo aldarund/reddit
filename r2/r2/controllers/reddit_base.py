@@ -1051,9 +1051,9 @@ class RedditController(MinimalController):
                     message = ban_info['message']
                 else:
                     sitelink = url_escape(add_sr("/"))
-                    subject = ("/r/%s has been incorrectly banned" %
+                    subject = ("/d/%s has been incorrectly banned" %
                                    c.site.name)
-                    link = ("/r/redditrequest/submit?url=%s&title=%s" %
+                    link = ("/d/redditrequest/submit?url=%s&title=%s" %
                                 (sitelink, subject))
                     message = strings.banned_subreddit_message % dict(
                                                                     link=link)

@@ -269,7 +269,7 @@ class WikiController(RedditController):
         if g.disable_wiki and not c.user_is_admin:
             self.handle_error(403, 'WIKI_DOWN')
         if not c.site._should_wiki:
-            self.handle_error(404, 'NOT_WIKIABLE')  # /r/mod for an example
+            self.handle_error(404, 'NOT_WIKIABLE')  # /d/mod for an example
         frontpage = isinstance(c.site, DefaultSR)
         c.wiki_base_url = join_urls(c.site.path, 'wiki')
         c.wiki_api_url = join_urls(c.site.path, '/api/wiki')

@@ -1250,7 +1250,7 @@ class VMessageRecipient(VExistingUname):
         if not name:
             return self.error()
         is_subreddit = False
-        if name.startswith('/r/'):
+        if name.startswith('/d/'):
             name = name[3:]
             is_subreddit = True
         elif name.startswith('#'):

@@ -67,7 +67,7 @@ def error_mapper(code, message, environ, global_conf=None, **kw):
     # c is not always registered with the paste registry by the time we get to
     # this error_mapper. if it's not, we can safely assume that we didn't use
     # the pagecache. one such case where this happens is the
-    # DomainMiddleware-based srname.reddit.com -> reddit.com/r/srname redirect.
+    # DomainMiddleware-based srname.reddit.com -> reddit.com/d/srname redirect.
     try:
         if c.used_cache:
             return
@@ -196,7 +196,7 @@ class DomainMiddleware(object):
             if not subdomains and g.domain_prefix:
                 subdomains.append(g.domain_prefix)
             subdomains.append(g.domain)
-            redir = "%s/r/%s/%s" % ('.'.join(subdomains),
+            redir = "%s/d/%s/%s" % ('.'.join(subdomains),
                                     sr_redirect, environ['FULLPATH'])
             redir = "http://" + redir.replace('//', '/')
 
@@ -207,7 +207,7 @@ class DomainMiddleware(object):
 
 
 class SubredditMiddleware(object):
-    sr_pattern = re.compile(r'^/r/([^/]{2,})')
+    sr_pattern = re.compile(r'^/d/([^/]{2,})')
 
     def __init__(self, app):
         self.app = app

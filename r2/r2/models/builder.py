@@ -112,8 +112,8 @@ class Builder(object):
         modlink = {}
         modlabel = {}
         for s in subreddits.values():
-            modlink[s._id] = '/r/%s/about/moderators' % s.name
-            modlabel[s._id] = (_('moderator of /r/%(reddit)s, speaking officially') %
+            modlink[s._id] = '/d/%s/about/moderators' % s.name
+            modlabel[s._id] = (_('moderator of /d/%(reddit)s, speaking officially') %
                         dict(reddit = s.name) )
 
 

@@ -35,8 +35,8 @@ from r2.models.admintools import is_shamed_domain
 
 import string
 
-# strips /r/foo/, /s/, or both
-strip_sr          = re.compile('\A/r/[a-zA-Z0-9_-]+')
+# strips /d/foo/, /s/, or both
+strip_sr          = re.compile('\A/d/[a-zA-Z0-9_-]+')
 strip_s_path      = re.compile('\A/s/')
 leading_slash     = re.compile('\A/+')
 has_protocol      = re.compile('\A[a-zA-Z_-]+:')
@@ -148,8 +148,8 @@ class ToolbarController(RedditController):
             # 1. User types http://foo.com/http://myurl?cheese=brie
             #    (where foo.com is an unauthorised cname)
             # 2. We generate a frame that points to
-            #    http://www.reddit.com/r/foo/http://myurl?cnameframe=0.12345&cheese=brie
-            # 3. Because we accept everything after the /r/foo/, and
+            #    http://www.reddit.com/d/foo/http://myurl?cnameframe=0.12345&cheese=brie
+            # 3. Because we accept everything after the /d/foo/, and
             #    we've now parsed, modified, and reconstituted that
             #    URL to add cnameframe, we really can't make any good
             #    assumptions about what we've done to a potentially

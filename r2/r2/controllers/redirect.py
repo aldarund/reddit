@@ -43,7 +43,7 @@ class RedirectController(BaseController):
             rest = str(rest)
         else:
             rest = ''
-        return redirect_to("/r/t:%s/%s" % (tr_name, rest), _code=301)
+        return redirect_to("/d/t:%s/%s" % (tr_name, rest), _code=301)
 
     def GET_gilded_comments(self):
-        return redirect_to("/r/all/comments/gilded", _code=301)
+        return redirect_to("/d/all/comments/gilded", _code=301)

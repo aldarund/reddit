@@ -449,7 +449,7 @@ class Reddit(Templated):
                     more_text = "...and %d more" % (total - len(moderators))
                     mod_href = "http://%s/about/moderators" % get_domain()
 
-                if '/r/%s' % c.site.name == g.admin_message_acct:
+                if '/d/%s' % c.site.name == g.admin_message_acct:
                     label = _('message the admins')
                 else:
                     label = _('message the moderators')
@@ -627,16 +627,16 @@ class RedditFooter(CachedTemplate):
                 type = "flat_vert",
                 separator = ""),
 
-            NavMenu([
-                    NamedButton("wiki", False, nocname=True),
-                    OffsiteButton(_("FAQ"), dest = "/wiki/faq", nocname=True),
-                    OffsiteButton(_("reddiquette"), nocname=True, dest = "/wiki/reddiquette"),
-                    NamedButton("rules", False, nocname=True),
-                    NamedButton("feedback", False),
-                ],
-                title = _("help"),
-                type = "flat_vert",
-                separator = ""),
+            # NavMenu([
+            #         NamedButton("wiki", False, nocname=True),
+            #         OffsiteButton(_("FAQ"), dest = "/wiki/faq", nocname=True),
+            #         OffsiteButton(_("reddiquette"), nocname=True, dest = "/wiki/reddiquette"),
+            #         NamedButton("rules", False, nocname=True),
+            #         NamedButton("feedback", False),
+            #     ],
+            #     title = _("help"),
+            #     type = "flat_vert",
+            #     separator = ""),
 
             NavMenu([
                     OffsiteButton("mobile", "http://i.reddit.com"),
@@ -649,16 +649,16 @@ class RedditFooter(CachedTemplate):
                 type = "flat_vert",
                 separator = ""),
 
-            NavMenu([
-                    NamedButton("gold", False, nocname=True, dest = "/gold/about", css_class = "buygold"),
-                    NamedButton("store", False, nocname=True),
-                    OffsiteButton(_("redditgifts"), "http://redditgifts.com"),
-                    OffsiteButton(_("reddit.tv"), "http://reddit.tv"),
-                    OffsiteButton(_("radio reddit"), "http://radioreddit.com"),
-                ],
-                title = _("<3"),
-                type = "flat_vert",
-                separator = "")
+            # NavMenu([
+            #         NamedButton("gold", False, nocname=True, dest = "/gold/about", css_class = "buygold"),
+            #         NamedButton("store", False, nocname=True),
+            #         OffsiteButton(_("redditgifts"), "http://redditgifts.com"),
+            #         OffsiteButton(_("reddit.tv"), "http://reddit.tv"),
+            #         OffsiteButton(_("radio reddit"), "http://radioreddit.com"),
+            #     ],
+            #     title = _("<3"),
+            #     type = "flat_vert",
+            #     separator = "")
         ]
         CachedTemplate.__init__(self)
 
@@ -1810,7 +1810,7 @@ class SubscriptionBox(Templated):
 
         # Construct MultiReddit path
         if multi_text:
-            self.multi_path = '/r/' + '+'.join([sr.name for sr in srs])
+            self.multi_path = '/d/' + '+'.join([sr.name for sr in srs])
 
         if len(srs) > Subreddit.sr_limit and c.user_is_loggedin:
             if not c.user.gold:
@@ -1843,14 +1843,14 @@ class AllInfoBar(Templated):
         self.css_class = None
         if isinstance(site, AllMinus) and c.user.gold:
             self.description = (strings.r_all_minus_description + "\n\n" +
-                                " ".join("/r/" + sr.name for sr in site.srs))
+                                " ".join("/d/" + sr.name for sr in site.srs))
             self.css_class = "gold-accent"
         else:
             self.description = strings.r_all_description
             sr_ids = Subreddit.user_subreddits(user)
             srs = Subreddit._byID(sr_ids, data=True, return_dict=False)
             if srs:
-                self.allminus_url = '/r/all-' + '-'.join([sr.name for sr in srs])
+                self.allminus_url = '/d/all-' + '-'.join([sr.name for sr in srs])
 
         self.gilding_listing = False
         if request.path.startswith("/comments/gilded"):
@@ -3019,7 +3019,7 @@ class ContributorList(UserList):
 
     def user_ids(self):
         if c.site.hide_subscribers:
-            return [] # /r/lounge has too many subscribers to load without timing out,
+            return [] # /d/lounge has too many subscribers to load without timing out,
                       # and besides, some people might not want this list to be so
                       # easily accessible.
         else:
@@ -3046,7 +3046,7 @@ class ModList(UserList):
 
     @property
     def table_title(self):
-        return _("moderators of /r/%(reddit)s") % {"reddit": c.site.name}
+        return _("moderators of /d/%(reddit)s") % {"reddit": c.site.name}
 
     def executed_message(self, row_type):
         if row_type == "moderator_invite":

@@ -222,7 +222,7 @@ def make_subreddit_traffic_report(subreddits=None):
             name = "[%s]" % srname
             url = None
         else:
-            name = "/r/%s" % srname
+            name = "/d/%s" % srname
             url = name + "/about/traffic"
 
         report.append(((name, url), data))
@@ -317,7 +317,7 @@ class AdvertTrafficSummary(RedditTraffic):
         if name == g.default_sr:
             return _("frontpage")
         else:
-            return "/r/" + name
+            return "/d/" + name
 
     @staticmethod
     def get_ad_name(code, things=None):
@@ -411,7 +411,7 @@ class AdvertTraffic(RedditTraffic):
 
 class SubredditTraffic(RedditTraffic):
     def __init__(self):
-        RedditTraffic.__init__(self, "/r/" + c.site.name)
+        RedditTraffic.__init__(self, "/d/" + c.site.name)
 
         if c.user_is_sponsor:
             fullname = c.site._fullname
@@ -438,7 +438,7 @@ class SubredditTraffic(RedditTraffic):
             "q": "timestamp:{:d}..{:d}".format(int(epoch_seconds(date)),
                                                int(epoch_seconds(end))),
         })
-        return "/r/%s/search?%s" % (c.site.name, query)
+        return "/d/%s/search?%s" % (c.site.name, query)
 
     def get_dow_summary(self):
         return traffic.PageviewsBySubreddit.history("day", c.site.name)

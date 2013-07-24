@@ -121,7 +121,7 @@ def pay_url(l, campaign):
 def view_live_url(l, srname):
     url = get_domain(cname=False, subreddit=False)
     if srname:
-        url += '/r/%s' % srname
+        url += '/d/%s' % srname
     return 'http://%s/?ad=%s' % (url, l._fullname)
 
 # booleans
