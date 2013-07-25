@@ -88,7 +88,7 @@ menu =   MenuHandler(hot          = _('hot'),
                      store        = _("store"),  
                      ad_inq       = _("advertise"),
                      gold         = _('reddit gold'),
-                     reddits      = _('subreddits'),
+                     reddits      = _('dottopics'),
                      team         = _('team'),
                      rules        = _('rules'),
 
@@ -118,7 +118,7 @@ menu =   MenuHandler(hot          = _('hot'),
                      home         = _("home"),
                      about        = _("about"),
                      edit_subscriptions = _("edit subscriptions"),
-                     community_settings = _("subreddit settings"),
+                     community_settings = _("dottopic settings"),
                      moderators   = _("edit moderators"),
                      modmail      = _("moderator mail"),
                      contributors = _("edit approved submitters"),
@@ -137,7 +137,7 @@ menu =   MenuHandler(hot          = _('hot'),
 
                      popular      = _("popular"),
                      create       = _("create"),
-                     mine         = _("my subreddits"),
+                     mine         = _("my dottopics"),
 
                      i18n         = _("help translate"),
                      errors       = _("errors"),
@@ -339,9 +339,10 @@ class SubredditButton(NavButton):
     # TRANSLATORS: This refers to the user's front page
                       Frontpage: N_("front"),
                       All: N_("all"),
-                      Random: N_("random"),
+                      # Random: N_("random"),
     # TRANSLATORS: Gold feature, "myrandom", a random subreddit from your subscriptions
-                      RandomSubscription: N_("myrandom")}
+                      RandomSubscription: N_("myrandom")
+    }
 
     def __init__(self, sr, **kw):
         self.path = sr.path

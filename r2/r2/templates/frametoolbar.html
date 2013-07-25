@@ -69,19 +69,19 @@
            title="${_('hide url')}" alt="${_('hide url')}"/>
     </a>
 
-    <a class="serendipity popped-button"
-       title="${_('load a random link')}"
-       onmousedown="toolbar.push_button(this)"
-       onmouseup="toolbar.pop_button(this)"
-       onclick="toolbar.serendipity()"
-       href="${add_sr('/random')}"
-       target="_top">
-      %if thing.default_sr:
-        ${_("serendipity")}
-      %else:
-        ${"%(subreddit)s serendipity" % dict (subreddit=thing.site_name)}
-      %endif
-    </a>
+    <!--<a class="serendipity popped-button"-->
+       <!--title="${_('load a random link')}"-->
+       <!--onmousedown="toolbar.push_button(this)"-->
+       <!--onmouseup="toolbar.pop_button(this)"-->
+       <!--onclick="toolbar.serendipity()"-->
+       <!--href="${add_sr('/random')}"-->
+       <!--target="_top">-->
+      <!--%if thing.default_sr:-->
+        <!--${_("serendipity")}-->
+      <!--%else:-->
+        <!--${"%(subreddit)s serendipity" % dict (subreddit=thing.site_name)}-->
+      <!--%endif-->
+    <!--</a>-->
 
     %if thing.user_is_loggedin:
       <a href="http://${get_domain(cname = thing.cname)}/user/${thing.user_name}"

@@ -564,7 +564,7 @@ class UserController(ListingController):
                     sr_buttons.append(NavButton(srname, srname, opt='sr'))
                 base_path = request.path
                 sr_menu = NavMenu(sr_buttons, base_path=base_path,
-                                  title=_('filter by subreddit'),
+                                  title=_('filter by dottopic'),
                                   type='lightdrop')
                 res.append(sr_menu)
         return res
@@ -939,7 +939,7 @@ class RedditsController(ListingController):
     render_cls = SubredditsPage
 
     def title(self):
-        return _('subreddits')
+        return _('dottopics')
 
     def keep_fn(self):
         base_keep_fn = ListingController.keep_fn(self)
@@ -980,8 +980,8 @@ class RedditsController(ListingController):
         return reddits
 
     @listing_api_doc(section=api_section.subreddits,
-                     uri='/subreddits/{where}',
-                     uri_variants=['/subreddits/popular', '/subreddits/new', '/subreddits/banned'])
+                     uri='/dottopics/{where}',
+                     uri_variants=['/dottopics/popular', '/dottopics/new', '/dottopics/banned'])
     def GET_listing(self, where, **env):
         self.where = where
         return ListingController.GET_listing(self, **env)
@@ -999,11 +999,11 @@ class MyredditsController(ListingController, OAuth2ResourceController):
                     NavButton(getattr(plurals, "approved submitter"), 'contributor'),
                     NavButton(plurals.moderator,   'moderator'))
 
-        return [NavMenu(buttons, base_path = '/subreddits/mine/',
+        return [NavMenu(buttons, base_path = '/dottopics/mine/',
                         default = 'subscriber', type = "flatlist")]
 
     def title(self):
-        return _('subreddits: ') + self.where
+        return _('dottopics: ') + self.where
 
     def builder_wrapper(self, thing):
         w = ListingController.builder_wrapper(thing)
@@ -1053,8 +1053,8 @@ class MyredditsController(ListingController, OAuth2ResourceController):
     @require_oauth2_scope("mysubreddits")
     @validate(VUser())
     @listing_api_doc(section=api_section.subreddits,
-                     uri='/subreddits/mine/{where}',
-                     uri_variants=['/subreddits/mine/subscriber', '/subreddits/mine/contributor', '/subreddits/mine/moderator'])
+                     uri='/dottopics/mine/{where}',
+                     uri_variants=['/dottopics/mine/subscriber', '/dottopics/mine/contributor', '/dottopics/mine/moderator'])
     def GET_listing(self, where='subscriber', **env):
         self.where = where
         return ListingController.GET_listing(self, **env)

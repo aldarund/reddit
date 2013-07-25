@@ -21,7 +21,7 @@
 ###############################################################################
 
 """
-Generate the data for the listings for the time-based Subreddit
+Generate the data for the listings for the time-based Dottopic
 queries. The format is eventually that of the CachedResults objects
 used by r2.lib.db.queries (with some intermediate steps), so changes
 there may warrant changes here

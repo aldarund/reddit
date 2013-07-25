@@ -114,38 +114,38 @@ class OAuth2Scope:
             "id": "modflair",
             "name": _("Moderate Flair"),
             "description": _(
-                "Manage and assign flair in subreddits I moderate."),
+                "Manage and assign flair in dottopics I moderate."),
         },
         "modposts": {
             "id": "modposts",
             "name": _("Moderate Posts"),
             "description": _(
                 "Approve, remove, mark nsfw, and distinguish content"
-                " in subreddits I moderate."),
+                " in dottopics I moderate."),
         },
         "modconfig": {
             "id": "modconfig",
-            "name": _("Moderate Subreddit Configuration"),
+            "name": _("Moderate Dottopic Configuration"),
             "description": _(
                 "Manage the configuration, sidebar, and CSS"
-                " of subreddits I moderate."),
+                " of dottopics I moderate."),
         },
         "modlog": {
             "id": "modlog",
             "name": _("Moderation Log"),
             "description": _(
-                "Access the moderation log in subreddits I moderate."),
+                "Access the moderation log in dottopics I moderate."),
         },
         "modtraffic": {
             "id": "modtraffic",
-            "name": _("Subreddit Traffic"),
-            "description": _("Access traffic stats in subreddits I moderate."),
+            "name": _("Dottopic Traffic"),
+            "description": _("Access traffic stats in dottopics I moderate."),
         },
         "mysubreddits": {
             "id": "mysubreddits",
-            "name": _("My Subreddits"),
+            "name": _("My Dottopic"),
             "description": _(
-                "Access the list of subreddits I moderate, contribute to,"
+                "Access the list of dottopics I moderate, contribute to,"
                 " and subscribe to."),
         },
         "privatemessages": {
@@ -167,7 +167,7 @@ class OAuth2Scope:
         "subscribe": {
             "id": "subscribe",
             "name": _("Edit My Subscriptions"),
-            "description": _("Manage my subreddit subscriptions."),
+            "description": _("Manage my dottopic subscriptions."),
         },
         "vote": {
             "id": "vote",

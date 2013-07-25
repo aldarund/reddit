@@ -64,7 +64,7 @@ section_info = {
         'title': _('search'),
     },
     'subreddits': {
-        'title': _('subreddits'),
+        'title': _('dottopics'),
     },
     'users': {
         'title': _('users'),

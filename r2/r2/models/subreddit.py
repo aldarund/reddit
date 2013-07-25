@@ -199,7 +199,7 @@ class Subreddit(Thing, Printable):
         if ret and single:
             return ret.values()[0]
         elif not ret and single:
-            raise NotFound, 'Subreddit %s' % name
+            raise NotFound, 'Dottopic %s' % name
         else:
             return ret
 
@@ -437,7 +437,7 @@ class Subreddit(Thing, Printable):
         self.stylesheet_contents_user = ""  # reads from wiki; ensure pg clean
         self._commit()
 
-        ModAction.create(self, c.user, action='wikirevise', details='Updated subreddit stylesheet')
+        ModAction.create(self, c.user, action='wikirevise', details='Updated dottopic stylesheet')
         return wr
 
     def is_special(self, user):
@@ -1021,7 +1021,7 @@ class FriendsSR(FakeSubreddit):
 
 class AllSR(FakeSubreddit):
     name = 'all'
-    title = 'all subreddits'
+    title = 'all dottopics'
 
     def keep_for_rising(self, sr_id):
         return True
@@ -1063,7 +1063,7 @@ class AllMinus(AllSR):
 
     @property
     def title(self):
-        return 'all subreddits except ' + ', '.join(sr.name for sr in self.srs)
+        return 'all dottopics except ' + ', '.join(sr.name for sr in self.srs)
 
     @property
     def path(self):
@@ -1282,8 +1282,8 @@ class ModContribSR(MultiReddit):
         return [sr._id for sr in self.srs if sr._spam]
 
 class ModSR(ModContribSR):
-    name  = "subreddits you moderate"
-    title = "subreddits you moderate"
+    name  = "dottopics you moderate"
+    title = "dottopics you moderate"
     query_param = "moderator"
     real_path = "mod"
 
@@ -1312,7 +1312,7 @@ class SubSR(FakeSubreddit):
 
     @property
     def path(self):
-        return "/subreddits/"
+        return "/dottopics/"
 
 class DomainSR(FakeSubreddit):
     @property

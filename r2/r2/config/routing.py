@@ -60,7 +60,7 @@ def make_map():
        action='lang_traffic', langcode='')
     mc('/traffic/adverts/:code', controller='front',
        action='advert_traffic', code='')
-    mc('/traffic/subreddits/report', controller='front',
+    mc('/traffic/dottopics/report', controller='front',
        action='subreddit_traffic_report')
     mc('/account-activity', controller='front', action='account_activity')
 
@@ -74,13 +74,13 @@ def make_map():
     mc('/about/:location', controller='front', action='editreddit',
        location='about')
 
-    mc('/subreddits/create', controller='front', action='newreddit')
-    mc('/subreddits/search', controller='front', action='search_reddits')
-    mc('/subreddits/login', controller='forms', action='login')
-    mc('/subreddits/:where', controller='reddits', action='listing',
+    mc('/dottopics/create', controller='front', action='newreddit')
+    mc('/dottopics/search', controller='front', action='search_reddits')
+    mc('/dottopics/login', controller='forms', action='login')
+    mc('/dottopics/:where', controller='reddits', action='listing',
        where='popular', requirements=dict(where="popular|new|banned"))
 
-    mc('/subreddits/mine/:where', controller='myreddits', action='listing',
+    mc('/dottopics/mine/:where', controller='myreddits', action='listing',
        where='subscriber',
        requirements=dict(where='subscriber|contributor|moderator'))
 

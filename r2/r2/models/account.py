@@ -160,7 +160,7 @@ class Account(Thing):
 
     def incr_karma(self, kind, sr, amt):
         if sr.name.startswith('_'):
-            g.log.info("Ignoring karma increase for subreddit %r" % (sr.name,))
+            g.log.info("Ignoring karma increase for dottopic %r" % (sr.name,))
             return
 
         prop = '%s_%s_karma' % (sr.name, kind)
@@ -207,7 +207,7 @@ class Account(Thing):
         old_comment_karma = self._t.get('comment_karma', 0)
         if old_link_karma or old_comment_karma:
             karmas.append((_('ancient history'),
-                           _('really obscure karma from before it was cool to track per-subreddit'),
+                           _('really obscure karma from before it was cool to track per-dottopic'),
                            old_link_karma, old_comment_karma))
 
         return karmas

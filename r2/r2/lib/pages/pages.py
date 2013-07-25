@@ -359,7 +359,7 @@ class Reddit(Templated):
                     and not (c.user_is_loggedin
                              and c.site.can_submit(c.user))):
                 if c.site.type == "archived":
-                    subtitle = _('this subreddit is archived '
+                    subtitle = _('this dottopic is archived '
                                  'and no longer accepting submissions.')
                     ps.append(SideBox(title=_('Submissions disabled'),
                                       css_class="submit",
@@ -368,10 +368,10 @@ class Reddit(Templated):
                                       show_icon=False))
                 else:
                     if c.site.type == 'restricted':
-                        subtitle = _('submission in this subreddit '
+                        subtitle = _('submission in this dottopic '
                                      'is restricted to approved submitters.')
                     elif c.site.type == 'gold_restricted':
-                        subtitle = _('submission in this subreddit '
+                        subtitle = _('submission in this dottopic '
                                      'is restricted to reddit gold members.')
                     ps.append(SideBox(title=_('Submissions restricted'),
                                       css_class="submit",
@@ -435,8 +435,8 @@ class Reddit(Templated):
         if self.create_reddit_box and c.user_is_loggedin:
             delta = datetime.datetime.now(g.tz) - c.user._date
             if delta.days >= g.min_membership_create_community:
-                ps.append(SideBox(_('Create your own subreddit'),
-                           '/subreddits/create', 'create',
+                ps.append(SideBox(_('Create your own dottopic'),
+                           '/dottopics/create', 'create',
                            subtitles = rand_strings.get("create_reddit", 2),
                            show_cover = True, nocname=True))
 
@@ -1403,7 +1403,7 @@ class EditReddit(Reddit):
             is_moderator = c.user_is_loggedin and \
                 c.site.is_moderator(c.user) or c.user_is_admin
 
-            title = (_('subreddit settings') if is_moderator else
+            title = (_('dottopic settings') if is_moderator else
                      _('about %(site)s') % dict(site=c.site.name))
 
         Reddit.__init__(self, title=title, *a, **kw)
@@ -1430,7 +1430,7 @@ class SubredditsPage(Reddit):
         self.searchbar = SearchBar(prev_search = prev_search,
                                    elapsed_time = elapsed_time,
                                    num_results = num_results,
-                                   header = _('search subreddits by name'),
+                                   header = _('search dottopics by name'),
                                    search_params = {},
                                    simple=True,
                                    subreddit_search=True
@@ -1448,12 +1448,12 @@ class SubredditsPage(Reddit):
         if c.user_is_loggedin:
             #add the aliases to "my reddits" stays highlighted
             buttons.append(NamedButton("mine",
-                                       aliases=['/subreddits/mine/subscriber',
-                                                '/subreddits/mine/contributor',
-                                                '/subreddits/mine/moderator']))
+                                       aliases=['/dottopics/mine/subscriber',
+                                                '/dottopics/mine/contributor',
+                                                '/dottopics/mine/moderator']))
 
         return [PageNameNav('subreddits'),
-                NavMenu(buttons, base_path = '/subreddits', type="tabmenu")]
+                NavMenu(buttons, base_path = '/dottopics', type="tabmenu")]
 
     def content(self):
         return self.content_stack((self.interestbar, self.searchbar,
@@ -1467,7 +1467,7 @@ class SubredditsPage(Reddit):
         subscribe_box = SubscriptionBox(srs,
                                         multi_text=strings.subscribed_multi)
         num_reddits = len(subscribe_box.srs)
-        ps.append(SideContentBox(_("your front page subreddits (%s)") %
+        ps.append(SideContentBox(_("your front page dottopics (%s)") %
                                  num_reddits, [subscribe_box]))
         return ps
 
@@ -1736,9 +1736,9 @@ class SubredditTopBar(CachedTemplate):
         drop_down_buttons.append(NavButton(menu.edit_subscriptions,
                                            sr_path = False,
                                            css_class = 'bottom-option',
-                                           dest = '/subreddits/'))
+                                           dest = '/dottopics/'))
         return SubredditMenu(drop_down_buttons,
-                             title = _('my subreddits'),
+                             title = _('my dottopics'),
                              type = 'srdrop')
 
     def subscribed_reddits(self):
@@ -1764,7 +1764,8 @@ class SubredditTopBar(CachedTemplate):
     def special_reddits(self):
         css_classes = {Random: "random",
                        RandomSubscription: "gold"}
-        reddits = [Frontpage, All, Random]
+        reddits = [Frontpage, All]
+        #RANDOM REMOVED FROM HERE
         if getattr(c.site, "over_18", False):
             reddits.append(RandomNSFW)
         if c.user_is_loggedin:
@@ -1787,8 +1788,10 @@ class SubredditTopBar(CachedTemplate):
 
 
         if not c.user_is_loggedin:
+            # pass
             menus.append(self.popular_reddits())
         else:
+            # pass
             menus.append(self.subscribed_reddits())
             sep = '<span class="separator">&nbsp;&ndash;&nbsp;</span>'
             menus.append(RawString(sep))
@@ -1824,7 +1827,7 @@ class SubscriptionBox(Templated):
                             Subreddit.gold_limit - Subreddit.sr_limit)
                 visible = min(len(srs), Subreddit.gold_limit)
                 bonus = {"bonus": extra}
-                self.goldmsg = _("%(bonus)s bonus subreddits") % bonus
+                self.goldmsg = _("%(bonus)s bonus dottopics") % bonus
                 self.prelink = ["/wiki/faq#wiki_how_many_subreddits_can_i_subscribe_to.3F",
                                 _("%s visible") % visible]
 
@@ -3032,7 +3035,7 @@ class ModList(UserList):
     invite_action = 'accept_moderator_invite'
     form_title = _('add moderator')
     invite_form_title = _('invite moderator')
-    remove_self_title = _('you are a moderator of this subreddit. %(action)s')
+    remove_self_title = _('you are a moderator of this dottopic. %(action)s')
 
     def __init__(self, editable=True):
         super(ModList, self).__init__(editable=editable)
@@ -3839,7 +3842,7 @@ class PromoteReport(Templated):
             _("target"),
             _("bid"),
             _("frontpage clicks"), _("frontpage impressions"),
-            _("subreddit clicks"), _("subreddit impressions"),
+            _("dottopic clicks"), _("dottopic impressions"),
             _("total clicks"), _("total impressions"),
         ))
         for row in self.campaign_report:

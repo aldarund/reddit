@@ -1022,7 +1022,7 @@ class VSubmitSR(Validator):
 
     def param_docs(self):
         return {
-            self.param[0]: "name of a subreddit",
+            self.param[0]: "name of a dottopic",
         }
 
 class VSubscribeSR(VByName):
@@ -1200,7 +1200,7 @@ class VUrl(VRequired):
         params = {}
         try:
             params[param_names[0]] = 'a valid URL'
-            params[param_names[1]] = 'a subreddit'
+            params[param_names[1]] = 'a dottopic'
             params[param_names[2]] = 'boolean value'
         except IndexError:
             pass
@@ -1260,9 +1260,9 @@ class VMessageRecipient(VExistingUname):
             try:
                 s = Subreddit._by_name(name)
                 if isinstance(s, FakeSubreddit):
-                    raise NotFound, "fake subreddit"
+                    raise NotFound, "fake dottopic"
                 if s._spam:
-                    raise NotFound, "banned subreddit"
+                    raise NotFound, "banned dottopic"
                 return s
             except NotFound:
                 self.set_error(errors.SUBREDDIT_NOEXIST)

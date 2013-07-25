@@ -1411,7 +1411,7 @@ class Message(Thing, Printable):
                     item.body = _('[unblock user to see this message]')
             taglinetext = ''
             if item.hide_author:
-                taglinetext = _("subreddit message %(author)s sent %(when)s ago")
+                taglinetext = _("dottopic message %(author)s sent %(when)s ago")
             elif item.author_id == c.user._id:
                 taglinetext = _("to %(dest)s sent %(when)s ago")
             elif item.to_id == c.user._id or item.to_id is None:
@@ -1428,9 +1428,9 @@ class Message(Thing, Printable):
                 item.dest = ""
             if item.sr_id:
                 if item.hide_author:
-                    item.updated_author = _("via %(subreddit)s")
+                    item.updated_author = _("via %(dottopic)s")
                 else:
-                    item.updated_author = _("%(author)s via %(subreddit)s")
+                    item.updated_author = _("%(author)s via %(dottopic)s")
             else:
                 item.updated_author = ''
 

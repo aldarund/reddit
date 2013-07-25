@@ -79,9 +79,9 @@ from r2.lib.errors import reddit_http_error
 
 import json
 
-page_descriptions = {'config/stylesheet':_("This page is the subreddit stylesheet, changes here apply to the subreddit css"),
-                     'config/sidebar':_("The contents of this page appear on the subreddit sidebar"),
-                     'config/description':_("The contents of this page appear in the public subreddit description")}
+page_descriptions = {'config/stylesheet':_("This page is the dottopic stylesheet, changes here apply to the subreddit css"),
+                     'config/sidebar':_("The contents of this page appear on the dottopic sidebar"),
+                     'config/description':_("The contents of this page appear in the public dottopic description")}
 
 ATTRIBUTE_BY_PAGE = {"config/sidebar": "description",
                      "config/description": "public_description"}
@@ -183,7 +183,7 @@ class WikiController(RedditController):
             if error['reason'] == 'PAGE_NAME_LENGTH':
                 error_msg = _("this wiki cannot handle page names of that magnitude!  please select a page name shorter than %d characters") % error['max_length']
             elif error['reason'] == 'PAGE_CREATED_ELSEWHERE':
-                error_msg = _("this page is a special page, please go into the subreddit settings and save the field once to create this special page")
+                error_msg = _("this page is a special page, please go into the dottopic settings and save the field once to create this special page")
             elif error['reason'] == 'PAGE_NAME_MAX_SEPARATORS':
                 error_msg = _('a max of %d separators "/" are allowed in a wiki page name.') % error['max_separators']
             return BoringPage(_("Wiki error"), infotext=error_msg).render()

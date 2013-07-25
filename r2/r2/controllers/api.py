@@ -2962,7 +2962,7 @@ class ApiController(RedditController, OAuth2ResourceController):
                     site._id, flair_template_id, flair_type=flair_type)
             except NotFound:
                 # TODO: serve error to client
-                g.log.debug('invalid flair template for subreddit %s', site._id)
+                g.log.debug('invalid flair template for dottopic %s', site._id)
                 return
         else:
             flair_template = None
