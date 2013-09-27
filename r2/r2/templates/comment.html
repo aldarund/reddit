@@ -99,7 +99,21 @@ ${parent.collapsed()}
      %if thing.deleted:
        <em>${_("deleted comment from")}</em>&#32;
      %endif
-     ${WrappedUser(thing.author, thing.attribs, thing,
+     %if thing.author.pref_avatar:
+        %if thing.author.pref_avatar_img:
+                <style>
+    .b-img-radius {
+  border: 1px solid #000;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+        margin: 2px;
+}
+</style>
+            <img src="${thing.author.pref_avatar_img}" align='left'  class="b-img-radius" style="background: url(${c.user.pref_avatar_img}); width: 24px; height: 24px"/>
+        %endif
+%endif
+${WrappedUser(thing.author, thing.attribs, thing,
                    gray = collapse).render()}
      &#32;
   %else:

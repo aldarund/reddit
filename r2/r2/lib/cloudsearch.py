@@ -611,7 +611,7 @@ def _run_changed(msgs, chan):
             msgs[-1].delivery_info.get('message_count', 'unknown')))
 
 
-def run_changed(drain=False, min_size=500, limit=1000, sleep_time=10,
+def run_changed(drain=False, min_size=3, limit=1000, sleep_time=10,
                 use_safe_get=False, verbose=False):
     '''Run by `cron` (through `paster run`) on a schedule to send Things to
         Amazon CloudSearch

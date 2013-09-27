@@ -1659,7 +1659,7 @@ class ApiController(RedditController, OAuth2ResourceController):
     @require_oauth2_scope("modconfig")
     @validate(VSrModerator(perms='config'),
               VModhash(),
-              file = VLength('file', max_length=1024*500),
+              file = VLength('file', max_length=1024*500*20),
               name = VCssName("name"),
               img_type = VImageType('img_type'),
               form_id = VLength('formid', max_length = 100), 

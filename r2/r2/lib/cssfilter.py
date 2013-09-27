@@ -395,6 +395,7 @@ def find_preview_links(sr):
 def rendered_link(links, media, compress):
     with c.user.safe_set_attr:
         c.user.pref_compress = compress
+        c.user.pref_compress = compress
         c.user.pref_media    = media
     links = wrap_links(links, show_nums = True, num = 1)
     delattr(c.user, 'pref_compress')

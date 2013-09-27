@@ -19,6 +19,7 @@
 # All portions of the code written by reddit are Copyright (c) 2006-2013 reddit
 # Inc. All Rights Reserved.
 ###############################################################################
+from r2.lib.media import upload_media
 
 from r2.lib.pages import *
 from reddit_base import cross_domain
@@ -83,6 +84,10 @@ class PostController(ApiController):
               pref_lang = VLang('lang'),
               pref_media = VOneOf('media', ('on', 'off', 'subreddit')),
               pref_compress = VBoolean('compress'),
+              pref_avatar = VBoolean('avatar'),
+              avatar_img = VAvatarValidator('avatar_img'),
+              # pref_avatar_link = ,
+
               pref_min_link_score = VInt('min_link_score', -100, 100),
               pref_min_comment_score = VInt('min_comment_score', -100, 100),
               pref_num_comments = VInt('num_comments', 1, g.max_comments,
@@ -118,6 +123,10 @@ class PostController(ApiController):
 
         if kw.get("pref_no_profanity") or c.user.pref_no_profanity:
             kw['pref_label_nsfw'] = True
+
+        if kw.get("avatar_img"):
+            kw["pref_avatar_img"]= kw.get("avatar_img")
+
 
         # default all the gold options to on if they don't have gold
         if not c.user.gold:

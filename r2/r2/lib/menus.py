@@ -341,8 +341,7 @@ class SubredditButton(NavButton):
                       All: N_("all"),
                       # Random: N_("random"),
     # TRANSLATORS: Gold feature, "myrandom", a random subreddit from your subscriptions
-                      RandomSubscription: N_("myrandom")
-    }
+                      RandomSubscription: N_("myrandom")}
 
     def __init__(self, sr, **kw):
         self.path = sr.path

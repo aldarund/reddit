@@ -1765,7 +1765,6 @@ class SubredditTopBar(CachedTemplate):
         css_classes = {Random: "random",
                        RandomSubscription: "gold"}
         reddits = [Frontpage, All]
-        #RANDOM REMOVED FROM HERE
         if getattr(c.site, "over_18", False):
             reddits.append(RandomNSFW)
         if c.user_is_loggedin:

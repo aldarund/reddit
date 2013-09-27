@@ -20,6 +20,7 @@
 ## reddit Inc. All Rights Reserved.
 ###############################################################################
 
+
 <%inherit file="printable.html"/>
 <%namespace file="utils.html" import="plain_link" />
 
@@ -47,6 +48,7 @@ ${self.tagline(True)}
    collapse = thing.collapsed
 %>
 
+
 <div class="collapsed" ${(not collapse and "style='display:none'" or "")}>
   ${self.collapsed()}
 </div>
@@ -57,7 +59,8 @@ ${self.tagline(True)}
     <div class="unvotable-message">${strings.unvotable_message}</div>
 %endif
   </p>
-  ${self.commentBody()}
+
+${self.commentBody()}
   <ul class="flat-list buttons">
     ${self.buttons()}
   </ul>

@@ -338,7 +338,7 @@ class LimitUploadSize(object):
                         "'',"
                         "[['BAD_CSS_NAME', ''], ['IMAGE_ERROR', '", error_msg,"']],"
                         "'image-upload');"
-                        "</script></head><body>you shouldn\'t be here</body></html>"]
+                        "</script></head><body>Image to large</body></html>"]
 
         return self.app(environ, start_response)
 

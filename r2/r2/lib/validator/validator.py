@@ -19,6 +19,8 @@
 # All portions of the code written by reddit are Copyright (c) 2006-2013 reddit
 # Inc. All Rights Reserved.
 ###############################################################################
+import Image
+import StringIO
 
 import json
 
@@ -31,6 +33,7 @@ from r2.lib.filters import unkeep_space, websafe, _force_unicode
 from r2.lib.filters import markdown_souptest
 from r2.lib.db import tdb_cassandra
 from r2.lib.db.operators import asc, desc
+from r2.lib.media import upload_media
 from r2.lib.template_helpers import add_sr
 from r2.lib.jsonresponse import JQueryResponse, JsonResponse
 from r2.lib.log import log_text
@@ -1279,6 +1282,41 @@ class VUserWithEmail(VExistingUname):
         if not user or not hasattr(user, 'email') or not user.email:
             return self.error(errors.NO_EMAIL_FOR_USER)
         return user
+
+class VFileValidator(Validator):
+    def run(self, val):
+        return val
+
+class VAvatarValidator(Validator):
+
+    def run(self, val):
+            if not val:
+                return ''
+        # try:
+            f = open("/home/orion/slog/log2", "a+")
+
+            f.write("run\n")
+            f.close()
+            img = val
+            do_convert = True
+            if isinstance(img, basestring):
+                s = StringIO.StringIO(img)
+                s.seek(0)
+                img = Image.open(s)
+            if img.size[0] > 1024 or img.size[1] > 1024:
+                return ""
+            if img.format == "PNG":
+                # img.verify()
+                do_convert = False
+            # if do_convert:
+            img = img.convert('RGBA')
+
+            img = img.resize((55, 55), Image.ANTIALIAS)
+            url = upload_media(img, file_type=".png")
+
+            return url
+        # except:
+        #     return ''
 
 
 class VBoolean(Validator):

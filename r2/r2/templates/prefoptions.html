@@ -19,6 +19,15 @@
 ## All portions of the code written by reddit are Copyright (c) 2006-2013
 ## reddit Inc. All Rights Reserved.
 ###############################################################################
+<style>
+    .b-img-radius {
+  border: 1px solid #000;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+</style>
+
 
 <%!
    from r2.lib.template_helpers import add_sr
@@ -80,7 +89,7 @@
    if not c.frameless_cname:
        action = add_sr(action, sr_path = False, nocname=True)
  %>
-<form action="${action}" method="post" class="pretty-form short-text">
+<form action="${action}" enctype="multipart/form-data" method="post" class="pretty-form short-text">
   <input type="hidden" name="uh" value="${c.modhash}" />
   %if c.cname:
     <input type="hidden" name="${UrlParser.cname_get}" value="${random.random()}" />
@@ -146,6 +155,11 @@
 
       <p>${checkbox(_("show me links I've recently viewed"), "clickgadget")}</p>
       <p>${checkbox(_("compress the link display"), "compress")}</p>
+
+
+
+
+
       <p>${checkbox(_("don't show links after I've liked them"), "hide_ups")}
          &#32;
          <span class="little gray">${_("(except my own)")}</span>
@@ -175,6 +189,43 @@
       &#32;<span class="little gray">${_("(blank for none)")}</span>
       </p>
     </td>
+  </tr>
+  <tr>
+      <th>${_("avatar options")}</th>
+      <td>
+          <p>${checkbox(_("display my avatar"), "avatar")}</p>
+          %if c.user.pref_avatar_img:
+          <p>my avatar:</p>
+          <!--<p><img src='${c.user.pref_avatar_img}' alt="avatar"/></p>-->
+          <!--b-img-radius-->
+          <div class="b-img-radius" style="background: url(${c.user.pref_avatar_img}); width: 55px; height: 55px"></div>
+
+          %endif
+          <p>change avatar(max:1024*1024px, 250kb, jpeg/gif/png):</p>
+
+    <input type="file" name="avatar_img" id="avatar_img" />
+<p id="alert_avatar_size" style="color: #ff0000; display: none;" ></p>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#avatar_img').change(function () {
+                    console.log($(this)[0].files[0] = undefined);
+                    if (["image/jpeg", "image/png", "image/gif", "image/pjpeg"].indexOf($(this)[0].files[0].type) == -1) {
+                        $("#alert_avatar_size").text("Only png/gif/jpeg images allowed").show();
+                        $("#avatar_img").val("")
+                    } else {
+                        if ($(this)[0].files[0].size > 250000) {
+                            $("#alert_avatar_size").text("Image to large!").show();
+                            $("#avatar_img").val("")
+                        } else {
+                            $("#alert_avatar_size").hide();
+                        }
+
+                    }
+                });
+            });
+        </script>
+
+      </td>
   </tr>
   <tr>
     <th>${_("comment options")}</th>
