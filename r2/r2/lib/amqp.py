@@ -318,6 +318,7 @@ def handle_items(queue, callback, ack=True, limit=1, min_size=0,
             raise
 
 
+
 def empty_queue(queue):
     """debug function to completely erase the contents of a queue"""
     chan = connection_manager.get_channel()
