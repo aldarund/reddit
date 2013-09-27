@@ -1290,13 +1290,9 @@ class VFileValidator(Validator):
 class VAvatarValidator(Validator):
 
     def run(self, val):
-            if not val:
-                return ''
-        # try:
-            f = open("/home/orion/slog/log2", "a+")
-
-            f.write("run\n")
-            f.close()
+        if not val:
+            return ''
+        try:
             img = val
             do_convert = True
             if isinstance(img, basestring):
@@ -1315,8 +1311,8 @@ class VAvatarValidator(Validator):
             url = upload_media(img, file_type=".png")
 
             return url
-        # except:
-        #     return ''
+        except:
+            return ''
 
 
 class VBoolean(Validator):
