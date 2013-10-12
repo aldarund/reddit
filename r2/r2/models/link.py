@@ -1428,9 +1428,9 @@ class Message(Thing, Printable):
                 item.dest = ""
             if item.sr_id:
                 if item.hide_author:
-                    item.updated_author = _("via %(dottopic)s")
+                    item.updated_author = _("via %(subreddit)s")
                 else:
-                    item.updated_author = _("%(author)s via %(dottopic)s")
+                    item.updated_author = _("%(author)s via %(subreddit)s")
             else:
                 item.updated_author = ''
 

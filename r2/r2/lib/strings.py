@@ -171,7 +171,7 @@ apps below.
     traffic_subreddit_explanation = _("""
 Below are the traffic statistics for your dottopic. Each graph represents one of the following over the interval specified.
 
-* **pageviews** are all hits to %(dottopic)s, including both listing pages and comment pages.
+* **pageviews** are all hits to %(subreddit)s, including both listing pages and comment pages.
 * **uniques** are the total number of unique visitors (determined by a combination of their IP address and User Agent string) that generate the above pageviews. This is independent of whether or not they are logged in.
 * **subscriptions** is the number of new subscriptions that have been generated in a given day. This number is less accurate than the first two metrics, as, though we can track new subscriptions, we have no way to track unsubscriptions.
 
